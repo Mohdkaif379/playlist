@@ -1,0 +1,25 @@
+<%- include('partials/header', { title: title }) %>
+
+  <section>
+    <% if (!playlists) { %>
+      <p>Welcome to the Playlist EJS app. Please <a href="/auth/login">login with Spotify</a> to fetch your playlists.</p>
+    <% } else { %>
+      <h2>Your Playlists</h2>
+      <% if (playlists.items && playlists.items.length) { %>
+        <ul>
+          <% playlists.items.forEach(function(pl) { %>
+            <li>
+              <strong><%= pl.name %></strong> — <%= pl.tracks.total %> tracks
+              <% if (pl.images && pl.images[0]) { %>
+                <br><img src="<%= pl.images[0].url %>" alt="cover" style="height:48px;margin-top:6px">
+              <% } %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No playlists found.</p>
+      <% } %>
+    <% } %>
+  </section>
+
+<%- include('partials/footer') %>
