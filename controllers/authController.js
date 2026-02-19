@@ -6,7 +6,8 @@ const client_secret = process.env.CLIENT_SECRET;
 const redirect_uri = process.env.REDIRECT_URI;
 
 exports.login = (req, res) => {
-  const scope = 'user-read-private user-read-email';
+  // include playlist read scopes so we can fetch user's playlists
+  const scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative';
   const state = Math.random().toString(36).substring(2, 15);
   const params = new URLSearchParams({
     client_id,

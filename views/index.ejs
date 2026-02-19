@@ -3,6 +3,9 @@
   <section>
     <% if (!playlists) { %>
       <p>Welcome to the Playlist EJS app. Please <a href="/auth/login">login with Spotify</a> to fetch your playlists.</p>
+      <% if (typeof error !== 'undefined' && error) { %>
+        <pre style="color:crimson"><%= JSON.stringify(error, null, 2) %></pre>
+      <% } %>
     <% } else { %>
       <h2>Your Playlists</h2>
       <% if (playlists.items && playlists.items.length) { %>
